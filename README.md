@@ -7,9 +7,8 @@ USAGE:
 3. In your urls.py, add: 
 	from django.urls import include
 	urlpatterns.append(path("accounts/", include("accounts.urls"))
-4. Include bootstrap in your styling information of your project. 
 5. Where to find these new features (URLs): 
 	Login: accounts/login/
 	Signup: accounts/signup/
 	Accounts Edit: accounts/
-6. To logout, send a blank POST request to "accounts:logout" or "accounts/logout/"
+6. To logout, send a blank POST request to url name "accounts:logout" or url path "accounts/logout/"
