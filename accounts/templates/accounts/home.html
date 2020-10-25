@@ -1,0 +1,74 @@
+<script>
+    function deleteAccount(){
+        document.getElementById('deleteForm').submit();
+    }
+</script>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal-dialog text-dark">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to delete your account? This action cannot be undone. </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" onclick="deleteAccount();">Delete</button>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+    </div>
+    </div>
+</div>
+</div>
+
+<h1>Account Settings</h1>
+
+<h3>Change Password</h3>
+{% if error %}
+<p class="alert alert-danger alert-dismissible">
+    {{error}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times; </span>
+    </button>
+</p>
+{% endif %}
+{% if message %}
+<p class="alert alert-success alert-dismissible">
+    {{error}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times; </span>
+    </button>
+</p>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="method" value="pwdchange" />
+    <input type="password" name="old" id="old" placeholder="Old Password" />
+    <br />
+    <input type="password" name="new" id="new" placeholder="New Password" />
+    <br />
+    <input type="password" name="newc" id="newc" placeholder="Confirm New Password" />
+    <br />
+    <button class="btn btn-outline-primary" type="submit">
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-return-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+          </svg>
+          &nbsp; Change Password
+    </button>
+</form>
+
+<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">
+    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-x-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+      </svg>
+      &nbsp; Delete Account
+</button>
+
+
+<form method="post" id="deleteForm" style="display:none;">
+    {% csrf_token %}
+    <input type="hidden" name="method" value="delete" />
+</form>

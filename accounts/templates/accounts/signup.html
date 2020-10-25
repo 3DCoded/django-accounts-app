@@ -1,0 +1,28 @@
+<h1>Sign Up</h1>
+<br />
+{% if error %}
+<p class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times; </span>
+    </button>
+    {{error}}
+</p>
+<br />
+{% endif %}
+<form method='post' action="{% url 'accounts:signup' %}">
+    {% csrf_token %}
+    <input type="text" name="username" id="username" placeholder="Username" />
+    <br />
+    <input type="password" name="pwd" id="pwd" placeholder="Password" />
+    <br />
+    <input type="password" name="pwdc" id="pwdc" placeholder="Confirm Password" />
+    <br />
+    <br />
+    <button class="btn btn-outline-primary" type="submit">
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-plus-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+          </svg>
+          &nbsp; Sign Up
+    </button>
+</form>
+<p>Already have an account? Login <a href="{% url 'accounts:login' %}">here</a><br />
